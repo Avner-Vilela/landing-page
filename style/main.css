@@ -11,23 +11,41 @@ body {
 }
 header img {
     height: 110px; /* Altura um pouco menor que o cabeçalho para ter margem */
-    width: auto; /* Agora a largura se ajusta automaticamente */
+    width: auto;
     display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
+    margin: 0; /* Zera as margens verticais para o Flexbox assumir */
 }
 
 header {
     background-color: black;
     margin: 0;
-    padding: 10px 0;
+    padding: 20px 0; /* Aumenta o padding superior e inferior */
     width: 100%;
-    height: 230px;
+    height: 230px; 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around; /* DISTRIBUI ESPAÇO IGUALMENTE (Logo, Nav) */
     box-sizing: border-box;
+}
+
+/* NOVO BLOCO: Ajuste vertical do HEADER para MOBILE */
+@media (max-width: 768px) {
+    header {
+        height: auto; /* Remove a altura fixa para permitir que o conteúdo dite o tamanho */
+        padding-bottom: 5px; /* Ajuste o padding para aproximar a nav da borda */
+        justify-content: flex-start; /* Garante que a nav fique embaixo da logo */
+    }
+    
+    header img {
+        margin-top: 10px; /* Reduz a margem da logo para diminuir o cabeçalho */
+        margin-bottom: 10px; 
+    }
+
+    /* O elemento nav é empurrado para o final da coluna (abaixo da logo) */
+    .header-nav {
+        margin-top: auto;
+    }
 }
 
 /* Estilo para a navegação */
@@ -217,12 +235,26 @@ header {
     .sobre-grid {
         flex-direction: column;
     }
-    
-    .imagens-grid, .sobre-texto {
+
+    .imagens-grid,
+    .sobre-texto {
         width: 100%;
     }
-    .imagens-grid { 
+
+    .imagens-grid {
         margin-top: 12px;
+    }
+
+    /* Ajustes do HEADER para MOBILE (Corrige alinhamento vertical) */
+    header {
+        height: auto; /* Permite que o conteúdo defina a altura */
+        padding-bottom: 5px; /* Ajuste o padding para aproximar a nav da borda */
+        justify-content: flex-start; /* Garante que a nav fique embaixo da logo */
+    }
+    
+    header img {
+        margin-top: 10px; 
+        margin-bottom: 10px; /* Margem reduzida para compactar o header no mobile */
     }
 
     /* Ajustes do cabeçalho mantendo layout horizontal */
@@ -230,9 +262,10 @@ header {
         justify-content: center;
         padding: 10px 15px;
         gap: 8px;
+        margin-top: auto; /* EMPURRA A NAVEGAÇÃO PARA O FUNDO DO HEADER */
     }
 
-    .header-nav button {
+    .header-nav .nav-button {
         min-width: 105px;
         padding: 8px 10px;
         font-size: 13px;
@@ -246,35 +279,36 @@ header {
     }
 
     header {
-        height: 200px;
+        height: auto; /* Sobrescreve a altura fixa no mobile */
     }
 }
 
-/* Telas muito pequenas */
+/* Telas muito pequenas (MOBILE: CORREÇÃO DE QUEBRA DE NAVEGAÇÃO) */
 @media (max-width: 480px) {
     .header-nav {
-        padding: 8px 8px;
-        gap: 6px;
+        padding: 8px 5px; /* Reduz o padding lateral */
+        gap: 4px; /* Reduz o espaçamento entre itens */
+        flex-wrap: nowrap; /* Garante que os itens não quebrem linha */
     }
 
-    .header-nav button {
-        min-width: 85px;
-        padding: 6px 8px;
-        font-size: 12px;
+    .header-nav .nav-button {
+        min-width: 75px; /* Reduz o tamanho mínimo do botão */
+        padding: 6px 4px; /* Reduz o padding */
+        font-size: 11px; /* Diminui a fonte */
         margin: 0 1px;
     }
 
     .social-icons {
-        gap: 10px;
-        margin-left: 8px;
+        gap: 6px; /* Reduz o espaçamento entre ícones */
+        margin-left: 4px;
         padding-right: 2px;
     }
 
     /* Reduz o tamanho dos ícones em telas muito pequenas */
     .social-icon {
-        font-size: 18px;
-        padding: 6px;
-        width: 18px;
+        font-size: 16px; /* Ícone um pouco menor */
+        padding: 4px;
+        width: 16px;
     }
 
     header {
